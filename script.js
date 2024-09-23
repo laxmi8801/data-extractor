@@ -16,6 +16,7 @@ It will also have RDA Values (Recommended Dietary Allowance) which we need to ex
 - FSSAI License number: pack might have many license numbers, extract one of them and store other relevant information related to that number
 - Name: Extract the name of product
 - Brand/Manufactured By: Extract the parent company of this product
+- Serving size: This is sometimes explicity stated, or sometimes you have to be smart about it, like they will list nutrients per serving, so you can extract from there.
 `
 
 const quantitySchema =  {
@@ -63,12 +64,6 @@ async function extractInformation(imageLinks) {
           { type: "text", 
             text: labelReaderPrompt },
           ...imageMessage,
-          {
-            type: "image_url",
-            image_url: {
-              "url": "https://www.bigbasket.com/media/uploads/p/xl/1203607-5_3-frooti-drink-fresh-n-juicy-mango.jpg",
-            },
-          }
         ],
       },
     ],
@@ -100,6 +95,12 @@ async function extractInformation(imageLinks) {
                     "required": ["quantity", "unit"],
                     "additionalProperties": false
                   },
+                  "packagingSize": {
+                    "type": "object",
+                    "properties": quantitySchema,
+                    "required": ["quantity", "unit"],
+                    "additionalProperties": false
+                  },
                   "servingsPerPack": {"type": "number"},
                   "nutritionalInformation": {
                     "type": "array",
@@ -107,10 +108,11 @@ async function extractInformation(imageLinks) {
                     "additionalProperties": true,
                   },
                   "fssaiLicenseNumbers": {"type": "array", "items": {"type": "number"}},
-                  "claims": {"type": "array", "items": {"type": "string"}}
+                  "claims": {"type": "array", "items": {"type": "string"}},
+                  "shelfLife":{"type": "string"},
               },
               
-              "required": ["productName", "brandName", "ingredients", "servingSize", "servingsPerPack", "nutritionalInformation", "fssaiLicenseNumbers", "claims"],
+              "required": ["productName", "brandName", "ingredients", "servingSize","packagingSize", "servingsPerPack", "nutritionalInformation", "fssaiLicenseNumbers", "claims", "shelfLife"],
               "additionalProperties": false
           },
           "strict": true
