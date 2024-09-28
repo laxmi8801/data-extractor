@@ -1,4 +1,3 @@
-```markdown
 # Product Label Information Extraction
 
 This project is designed to extract key information from product labels found on packaging images. The data is parsed from images, processed via OpenAI's GPT-4 model, and then stored in a MongoDB database. 
@@ -139,7 +138,6 @@ Inserting document into MongoDB.
 ### Author
 
 This project was developed by People+ai. Feel free to reach out for any issues or suggestions!
-```
 
 ### Key Sections:
 - **Project Overview** gives a brief on what the project does.
