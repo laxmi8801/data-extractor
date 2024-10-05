@@ -4,9 +4,18 @@ import { MongoClient } from "mongodb";
 import csvParser from 'csv-parser';
 import fs from 'fs';
 import Promise from "bluebird"; // For better handling of async operations
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+// Access your API key from process.env
+const api_key = process.env.OPENAI_API_KEY;
+
+//console.log("API Key:", api_key);
+
 
 // Initialize OpenAI instance
-const openai = new OpenAI();
+const openai = new OpenAI({apiKey : api_key});
 
 // Define the prompt that will be passed to the OpenAI API
 const labelReaderPrompt = `
