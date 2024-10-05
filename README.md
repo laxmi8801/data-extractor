@@ -52,13 +52,14 @@ docker run -d -p 27017:27017 --name mongodb -e MONGO_INITDB_ROOT_USERNAME=root -
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/your-username/label-extraction.git
+    git clone https://github.com/your-username/data-extractor.git
     cd label-extraction
     ```
 
 2. Install the necessary dependencies:
     ```bash
     npm install
+    npm install dotenv
     ```
 
 3. Add your OpenAI API key. You can do this by creating a `.env` file and adding the following:
