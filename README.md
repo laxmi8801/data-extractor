@@ -45,7 +45,12 @@ Make sure you have the following installed:
 Make sure your MongoDB is running and accessible. You can spin up a local MongoDB instance using Docker:
 
 ```bash
-docker run -d -p 27017:27017 --name mongodb -e MONGO_INITDB_ROOT_USERNAME=root -e MONGO_INITDB_ROOT_PASSWORD=example mongo:latest
+#docker run -d -p 27017:27017 --name mongodb -e MONGO_INITDB_ROOT_USERNAME=root -e MONGO_INITDB_ROOT_PASSWORD=example mongo:latest
+
+docker run -d -p 27017:27017 --name mongodb \
+  -e MONGO_INITDB_ROOT_USERNAME=consumewise_db \
+  -e MONGO_INITDB_ROOT_PASSWORD=p123@ \
+  mongo:latest
 ```
 
 ### Environment Setup
@@ -102,7 +107,8 @@ To run the project, follow these steps:
    You can use MongoDB Compass or a terminal-based MongoDB shell to check if the data has been inserted correctly:
    
    ```bash
-   mongo --username=root --password=example
+   #mongo --username=root --password=example
+   mongo --username=consumewise_db --password=p123@
    use consumeWise
    db.products.find().pretty()
    ```
