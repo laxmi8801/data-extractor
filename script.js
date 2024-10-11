@@ -10,6 +10,7 @@ dotenv.config();
 
 // Access your API key from process.env
 const api_key = process.env.OPENAI_API_KEY;
+const db_password = process.env.DB_PASSWORD
 
 //console.log("API Key:", api_key);
 
@@ -148,7 +149,8 @@ async function extractInformation(imageLinks) {
  */
 async function main() {
   // Initialize MongoDB client and connect
-  const mongo = new MongoClient("mongodb://root:example@localhost:27017/");
+  //const mongo = new MongoClient("mongodb://root:example@localhost:27017/");
+  const mongo = new MongoClient("mongodb+srv://consumewise_db:" + db_password + "@cluster0.sodps.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
   await mongo.connect();
   const db = mongo.db("consumeWise");
   const coll = db.collection("products");
