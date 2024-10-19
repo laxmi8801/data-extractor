@@ -1,0 +1,6 @@
+Flask
+openai
+pymongo
+python-dotenv
+werkzeug
+Pillow
